@@ -10,18 +10,20 @@ int main() {
   int p = 0;
   int baseSystem;
 
-  cout << "Give number: "; cin >> s1;
-  cout << "Give number: "; cin >> s2;
-  cout << "What system: "; cin >> baseSystem;
+  cout << "Give number: ";
+  cin >> s1;
+  cout << "Give number: ";
+  cin >> s2;
+  cout << "What system: ";
+  cin >> baseSystem;
 
-  for(int i = s1.size()-1; i >= 0; i--){
+  for (int i = s1.size() - 1; i >= 0; i--) {
     sum = p + num.find(s1[i]) + num.find(s2[i]);
     f = num[sum % baseSystem] + f;
     p = num.find(to_string(sum / baseSystem));
   }
-  if(p){
+  if (p) {
     f = num[p] + f;
   }
   cout << "Sum: " << f << endl;
-  
 }
