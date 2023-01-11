@@ -1,29 +1,32 @@
 #include <iostream>
 using namespace std;
 int main() {
+  string odjemna = "3213";
+  string odjemnik = "3031";
+  string sum = "";
+  int difference;
+  bool loan = false;
+  int baseSystem = 4;
 
-  string num = "0123456789ABCDEF";
-  string s1 = "";
-  string s2 = "";
-  string f = "";
-  int sum = 0;
-  int p = 0;
-  int baseSystem;
-
-  cout << "Give number: ";
-  cin >> s1;
-  cout << "Give number: ";
-  cin >> s2;
-  cout << "What system: ";
-  cin >> baseSystem;
-
-  for (int i = s1.size() - 1; i >= 0; i--) {
-    sum = p + num.find(s1[i]) + num.find(s2[i]);
-    f = num[sum % baseSystem] + f;
-    p = num.find(to_string(sum / baseSystem));
+  for(int i = odjemna.size()-1; i >= 0; i--){
+    if(loan){
+      odjemna[i] = odjemna[i] -  1;
+    }
+    loan = false;
+    difference = odjemna[i] - odjemnik[i];
+    if(difference < 0){
+      loan = true;
+      difference += baseSystem;
+    }
+    sum = to_string(difference) + sum;
   }
-  if (p) {
-    f = num[p] + f;
+  for(int i = 0; i < sum.size();i++){
+    if(sum[i] == '0'){
+      sum.erase(i,1);
+    }
+    else{
+      break;
+    }
   }
-  cout << "Sum: " << f << endl;
+  cout << sum << endl;
 }
