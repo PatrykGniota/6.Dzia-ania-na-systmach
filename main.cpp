@@ -1,22 +1,37 @@
 #include <iostream>
 using namespace std;
+
+string MnozPrzezCfr(int cfr, string liczba, int podst){
+  int przn = 0;
+  int iloczyn = 0;
+  string wynik = "";
+
+  for(int i = liczba.size()-1; i >= 0; i--){
+    iloczyn = cfr*(liczba[i] - '0') + przn;
+    przn = iloczyn / podst;
+    wynik = char(iloczyn % podst + '0') + wynik;
+  }
+  if (przn > 0){
+    wynik = char(przn + '0') + wynik;
+  }
+}
+
 int main() {
-
-  string num = "0123456789ABCDEF";
-  string s1 = "6543";
-  string s2 = "0432";
-  string f = "";
-  int sum = 0;
-  int p = 0;
+  
+  int d = 0;
   int baseSystem = 7;
+  string firstNum = "6543";
+  string secondNum = "432";
+  string f = "0";
+  string pom = "";
 
-  for (int i = s1.size() - 1; i >= 0; i--) {
-    sum = p + num.find(s1[i]) + num.find(s2[i]);
-    f = num[sum % baseSystem] + f;
-    p = num.find(to_string(sum / baseSystem));
+  for(int i = secondNum.size()-1; i >= 0; i--){
+    pom = MnozPrzezCfr(secondNum[i] - '0',firstNum,baseSystem);
+    for(int j = 1; j <= d - i; j++){
+      pom = pom + '0';
+    }
+    
   }
-  if (p) {
-    f = num[p] + f;
-  }
-  cout << "Sum: " << f << endl;
+  cout << "Iloczyn = " << f;
+  return 0;
 }
